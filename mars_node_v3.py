@@ -494,6 +494,19 @@ class MarsNode:
         print(f"  Peer: {self.peer_node_id}")
         print(f"{'='*55}")
         print(f"  Send 'Ok' via Meshtastic DM to start\n")
+        
+        import threading
+        def delayed_send():
+            import time
+            time.sleep(5)
+            try:
+                dest = int(self.peer_node_id.replace("!", ""), 16)
+                self.interface.sendText("Ok", destinationId=dest)
+                print(f"  [AUTO-SEND] 'Ok' keyword sent to Alice ({self.peer_node_id})")
+            except Exception as e:
+                pass
+        threading.Thread(target=delayed_send, daemon=True).start()
+
         try:
             while True: time.sleep(1)
         except KeyboardInterrupt:
