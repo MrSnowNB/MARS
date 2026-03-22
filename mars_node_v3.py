@@ -450,8 +450,17 @@ class MarsNode:
     # ----- MESSAGE ROUTER -----
     def on_receive(self, packet, interface=None):
         try:
-            if self.is_my_node(packet) or not self.is_from_peer(packet): return
             decoded = packet.get("decoded", {})
+            portnum = decoded.get("portnum", "")
+            from_id = packet.get("fromId", "?")
+            
+            if portnum in ["TEXT_MESSAGE_APP", "PRIVATE_APP", str(MARS_PORTNUM)]:
+                print(f"[DEBUG RX] Packet from {from_id}: portnum={portnum} text='{decoded.get('text', '')}'")
+
+            if self.is_my_node(packet) or not self.is_from_peer(packet):
+                if portnum in ["TEXT_MESSAGE_APP", str(MARS_PORTNUM)]:
+                    print(f"[DEBUG RX] 🛑 Dropped! (is_my_node={self.is_my_node(packet)}, is_from_peer={self.is_from_peer(packet)}). Expected peer: {self.peer_node_id}")
+                return
             portnum = decoded.get("portnum", "")
 
             if portnum == "TEXT_MESSAGE_APP":
