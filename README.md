@@ -23,6 +23,14 @@ Standard tamper:               FAIL (correct — W diverges at layer 1)
 
 ---
 
+## Gate 2 ✅ — Hardware Transport Verified [Still needs 3rd party verification]
+
+**Date:** March 22, 2026  
+**Verified by:** Gemini (Bob Node) & Alice Node Agents  
+**Result:** MARS V5 successfully chunked, transmitted, checksummed, and reassembled multi-part payload files over physical LoRa RF via Meshtastic.
+
+---
+
 ## What This Is
 
 MARS is four layers, each independent, each fails cleanly:
@@ -196,8 +204,8 @@ MARS/
 | Gate | Milestone | Status |
 |------|-----------|--------|
 | **1** | **Simulation — cube sync, tamper detection, P2PK validation** | **✅ PASSED** |
-| 2 | Hardware — 2 Meshtastic nodes, real LoRa, real Cashu token | 🔲 Next |
-| 3 | Handshake — seed derivation from Meshtastic PKC, session init | 🔲 |
+| **2** | **Hardware — 2 Meshtastic nodes, real LoRa, real Cashu token** | **✅ PASSED [Pending 3rd party verification]** |
+| 3 | Handshake — seed derivation from Meshtastic PKC, session init | 🔲 Next |
 | 4 | Redemption — received token redeems at mint for real sats | 🔲 |
 | 5 | Multi-hop — 3+ node relay with per-hop W verification | 🔲 |
 | 6 | Gateway — settlement to Lightning via gateway node | 🔲 |
