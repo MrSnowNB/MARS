@@ -24,7 +24,6 @@ import logging
 
 import meshtastic
 import meshtastic.serial_interface
-import meshtastic.portnums_pb2
 from pubsub import pub
 
 
@@ -227,7 +226,7 @@ class MarsNode:
                     self.interface.sendData(
                         data          = packet,
                         destinationId = self.peer_id,  # FIX 4: unicast only
-                        portNum       = meshtastic.portnums_pb2.PortNum.PRIVATE_APP,
+                        portNum       = 256,
                         wantAck       = True,
                     )
                     success = True
