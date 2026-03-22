@@ -142,6 +142,10 @@ Both parties pre-agree on `mint_url`, `keyset_id`, and `unit` during session ini
 
 **Sequence Rollover** — 1-byte sequence number wraps at 256. Maximum Cashu token requires 3 chunks. 252-chunk margin. Guarded with `assert total_chunks <= 255`.
 
+### Known Issues & Troubleshooting
+
+**PowerShell NativeCommandError on Verbose Logging** — When running `mars_node.py` in PowerShell with Meshtastic debug logging enabled, PowerShell incorrectly treats Python's `stderr` stream output as a `NativeCommandError` and prints a series of red RemoteException errors. (Fixed: Configured Python's `logging` module to use `sys.stdout` instead).
+
 ---
 
 ## Running the Simulation

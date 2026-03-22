@@ -486,7 +486,14 @@ def main():
     parser.add_argument("--role", required=True, choices=["alice", "bob"])
     parser.add_argument("--port", required=True)
     parser.add_argument("--peer", required=True)
+    parser.add_argument("--verbose", action="store_true", help="Enable verbose debug logging")
     args = parser.parse_args()
+    
+    if args.verbose:
+        import logging
+        import sys
+        logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
+        
     MarsNode(args.role, args.port, args.peer).run()
 
 if __name__ == "__main__":
