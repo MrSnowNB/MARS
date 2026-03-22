@@ -236,7 +236,7 @@ MARS/
 
 ## License
 
-MIT
+MINE
 
 ---
 
